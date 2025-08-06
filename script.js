@@ -62,10 +62,13 @@ function toggleTheme() {
   localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
 }
 
-// Load theme from localStorage
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
+
+  // Default to dark if no preference is saved
+  const isDark = savedTheme === 'dark' || savedTheme === null;
+
+  if (isDark) {
     document.body.classList.add('dark');
     const icon = document.getElementById('theme-icon');
     if (icon) {
